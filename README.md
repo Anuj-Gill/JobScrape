@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JobScrape
 
-## Getting Started
+🚀 **JobScrape** is a web app that scrapes job & internship opportunities from YC and Internshala (more platforms coming soon!). Built with **Next.js, TypeScript, TailwindCSS, Redis, and Aceternity UI** for speed and efficiency.
 
-First, run the development server:
+## Features
+- **Scrapes jobs & internships** from multiple sources
+- **Super fast** thanks to Redis caching
+- **Minimal UI** with Tailwind & Aceternity UI
+- **More features coming soon** (Filters, more job platforms, etc.)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tech Stack
+- **Frontend:** Next.js (TypeScript, TailwindCSS, Aceternity UI)
+- **Backend:** API routes in Next.js
+- **Database:** Redis (Upstash)
+- **Scraping:** Cheerio (lightweight HTML parser)
+
+## Setup & Installation
+
+### 1. Clone the repository
+```sh
+git clone https://github.com/Anuj-Gill/JobScrape.git
+cd JobScrape
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```sh
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Set up environment variables
+Create a `.env` file in the root directory and add the following:
+```
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+NEXT_PUBLIC_API_URL=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Run the project
+```sh
+npm run dev
+```
+Your project should now be running at `http://localhost:3000` 🚀
 
-## Learn More
+## Contributing
+Contributions are welcome! If you want to improve this project, feel free to open an issue or submit a PR.
 
-To learn more about Next.js, take a look at the following resources:
+## Star the Repo ⭐
+If you find this useful, a **GitHub star** would be much appreciated!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
+This project is licensed under the MIT License.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
+Happy coding! 🚀
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
