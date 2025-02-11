@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Star } from 'lucide-react';
-import Image from 'next/image';
 
 
 //@ts-expect-error
@@ -32,11 +31,9 @@ const GitHubStars = ({repoUrl}) => {
   return (
 
     <button onClick={() => window.open(repoUrl, '_blank')} className="flex items-center space-x-1 py-1 rounded-md">
-      <Image
+      <img
         src='https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png'
         className='w-8 h-8 rounded-full'
-        width={8}
-        height={8}
         alt='github'
       />
       <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
