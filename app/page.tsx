@@ -6,7 +6,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 async function fetchJobs(): Promise<JobData> {
-  const response = await axios.get("http://localhost:3000/api/jobs");
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const response = await axios.get(`${apiUrl}/api/jobs`);
   return response?.data;
 }
 
