@@ -1,51 +1,58 @@
 'use client';
 
-import Link from 'next/link';
+import React, { useState } from 'react';
+import { ChevronDown, User, LogOut, LayoutDashboard } from 'lucide-react';
+import GitHubStars from './GithubStars';
+import { Coffee } from "lucide-react";
 import { useTheme } from 'next-themes';
-import { Github, Coffee } from 'lucide-react';
-import { JSX } from 'react';
+import { useRouter } from 'next/navigation';
 
-export function Navbar(): JSX.Element {
+import Link from 'next/link';
+
+const Navbar = () => {
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const router = useRouter();
+
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link 
-            href="/" 
-            className="flex items-center space-x-2 text-xl font-bold text-gray-900 dark:text-white"
-          >
-            JobScrape
-          </Link>
+    <nav className="fixed top-0 left-0 right-0 bg-gray-900/40 backdrop-blur-sm border-b border-white/10 text-white py-3 lg:px-16 px-2 flex justify-between items-center z-50">
+      <div className="flex items-center space-x-2">
+        <div className="w-8 h-8 rounded-xl bg-purple-500/10 flex items-center justify-center">
+          <img
+            src="/logo.png"
+            className="w-8 h-8 bg-white rounded-md"
+          />
+        </div>
+        <span
+          className="text-lg md:text-xl font-bold cursor-pointer transition-colors"
+          onClick={() => router.push('/landing')}
+        >
+          JobScrape
+        </span>
+      </div>
 
-          <div className="flex items-center space-x-4">
+      <div className="flex items-center  w-full justify-end space-x-10 md:space-x-8">
+
+            <GitHubStars repoUrl="https://github.com/Anuj-Gill/JobScrape" />
+
             <Link
-              href="https://github.com/yourusername/jobscrape"
+              href="https://buymeacoffee.com/gillanuj12e"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
             >
-              <Github className="w-5 h-5" />
-              <span className="hidden sm:inline-block">Star on GitHub</span>
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
-                123
-              </span>
-            </Link>
-
-            <Link
-              href="https://buymeacoffee.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-            >
-              <Coffee className="w-5 h-5" />
-              <span className="hidden sm:inline-block">Buy me a coffee</span>
+              
+              <img
+                src='/coffee-cup.png'
+                className='w-8 h-8 rounded-full'
+                />
             </Link>
 
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -58,9 +65,11 @@ export function Navbar(): JSX.Element {
                 </svg>
               )}
             </button>
-          </div>
-        </div>
       </div>
+
+
     </nav>
   );
-}
+};
+
+export default Navbar;

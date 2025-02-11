@@ -38,13 +38,11 @@ export async function GET(req: NextRequest) {
     try {
         // YC Jobs
         const ycCacheKey = getCacheKey("yc", filters);
-        console.log(`Checking Redis for YC Jobs: ${ycCacheKey}`);
 
         const cachedYcJobs = await redis.get(ycCacheKey);
         let ycJobs;
 
         if (cachedYcJobs) {
-            console.log("YC Jobs cache hit!", cachedYcJobs);
             try {
                 if (cachedYcJobs !== null && cachedYcJobs !== undefined) {
                     ycJobs = cachedYcJobs;
@@ -57,26 +55,20 @@ export async function GET(req: NextRequest) {
                 ycJobs = null; // Or handle as needed (e.g., refetch)
             }
         } else {
-            console.log("YC Jobs cache miss. Scraping...");
             ycJobs = await scrapeYCJobs("https://www.ycombinator.com/jobs");
             if (ycJobs) {
-                console.log("YC Jobs scraping successful. Setting cache...");
                 await redis.set(ycCacheKey, JSON.stringify(ycJobs), { ex: 3600 });
-                console.log("YC Jobs cache set.");
             } else {
-                console.log("YC Jobs scraping failed.");
             }
         }
 
         // Internshala Jobs
         const internshalaCacheKey = getCacheKey("internshala", filters);
-        console.log(`Checking Redis for Internshala Jobs: ${internshalaCacheKey}`);
 
         const cachedInternshalaJobs = await redis.get(internshalaCacheKey);
         let internshalaJobs;
 
         if (cachedInternshalaJobs) {
-            console.log("Internshala Jobs cache hit!");
             try {
                 if (cachedInternshalaJobs !== null && cachedInternshalaJobs !== undefined) {
                     internshalaJobs = cachedInternshalaJobs;
@@ -89,12 +81,9 @@ export async function GET(req: NextRequest) {
                 internshalaJobs = null;
             }
         } else {
-            console.log("Internshala Jobs cache miss. Scraping...");
             internshalaJobs = await scrapeInternshala("https://www.internshala.com/jobs/");
             if (internshalaJobs) {
-                console.log("Internshala Jobs scraping successful. Setting cache...");
                 await redis.set(internshalaCacheKey, JSON.stringify(internshalaJobs), { ex: 3600 });
-                console.log("Internshala Jobs cache set.");
             } else {
                 console.log("Internshala Jobs scraping failed.");
             }
