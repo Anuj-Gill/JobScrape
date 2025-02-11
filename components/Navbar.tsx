@@ -1,17 +1,15 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, User, LogOut, LayoutDashboard } from 'lucide-react';
 import GitHubStars from './GithubStars';
-import { Coffee } from "lucide-react";
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navbar = () => {
 
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const router = useRouter();
 
@@ -20,9 +18,12 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 bg-gray-900/40 backdrop-blur-sm border-b border-white/10 text-white py-3 lg:px-16 px-2 flex justify-between items-center z-50">
       <div className="flex items-center space-x-2">
         <div className="w-8 h-8 rounded-xl bg-purple-500/10 flex items-center justify-center">
-          <img
+          <Image
             src="/logo.png"
             className="w-8 h-8 bg-white rounded-md"
+            alt='logo'
+            width={8}
+            height={8}
           />
         </div>
         <span

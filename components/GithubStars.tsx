@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Star } from 'lucide-react';
+import Image from 'next/image';
 
 
-//@ts-ignore
+//@ts-expect-error
 const GitHubStars = ({repoUrl}) => {
   const [stars, setStars] = useState(null);
 
@@ -31,9 +32,12 @@ const GitHubStars = ({repoUrl}) => {
   return (
 
     <button onClick={() => window.open(repoUrl, '_blank')} className="flex items-center space-x-1 py-1 rounded-md">
-      <img
+      <Image
         src='https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png'
         className='w-8 h-8 rounded-full'
+        width={8}
+        height={8}
+        alt='github'
       />
       <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
       <span className="text-sm text-gray-200">{stars}</span>

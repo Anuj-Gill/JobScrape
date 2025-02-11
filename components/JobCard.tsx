@@ -1,4 +1,5 @@
 import { YCJob, InternshalaJob } from '@/types/jobs';
+import Image from 'next/image';
 import { JSX } from 'react';
 
 interface JobCardProps {
@@ -12,10 +13,12 @@ export function JobCard({ job, source }: JobCardProps): JSX.Element {
           <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-lg blur opacity-20 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
           <div className="relative p-6 bg-white dark:bg-gray-800 rounded-lg transition-all duration-300 hover:shadow-xl">
             <div className="flex items-start gap-4">
-              <img 
+              <Image
                 src={job.companyLogo} 
                 alt={source === 'yc' ? (job as YCJob).companyName : (job as InternshalaJob).company}
                 className="w-12 h-12 rounded-lg object-contain bg-gray-100 dark:bg-gray-700"
+                width={12}
+                height={12}
               />
               <div className="flex-1">
                 <h3 className="font-semibold text-lg text-gray-900 dark:text-white">

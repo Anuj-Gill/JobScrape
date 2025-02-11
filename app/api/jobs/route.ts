@@ -15,7 +15,7 @@ const redis = new Redis({
 
 // Function to generate cache key
 const getCacheKey = (source: string, filters = {}) => {
-    let keyParts = [source];
+    const keyParts = [source];
     if (Object.keys(filters).length > 0) {
         const filterString = Object.entries(filters)
             .map(([key, value]) => `${key}:${value}`)
@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
 
     // Correct way to get query parameters (using reduce)
     const filters = Array.from(searchParams.entries()).reduce((acc, [key, value]) => {
-        //@ts-ignore
+        //@ts-expect-error
         acc[key] = value;
         return acc;
     }, {});

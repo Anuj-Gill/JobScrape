@@ -1,6 +1,6 @@
 import LandingPage2 from "@/components/pages/LandingPage"
 
-export default function () {
+export default function LandingPage() {
   return (
     <LandingPage2 />
   )
